@@ -16,5 +16,11 @@ class RandomNumberTest < Minitest::Test
     assert_equal 5, @randomnumber.length
   end
 
+  def test_method_generate
+    assert_equal 5, @randomnumber.generate.length
+  end
 
+  def test_method_get_digit
+    assert_includes [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], @randomnumber.get_digit
+  end
 end
