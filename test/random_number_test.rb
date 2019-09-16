@@ -22,7 +22,8 @@ class RandomNumberTest < Minitest::Test
   end
 
   def test_method_get_digit
-    assert_includes ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], @randomnumber.get_digit
+    expected = ['0','1','2','3','4','5','6','7','8','9']
+    assert_includes expected, @randomnumber.get_digit
     assert_equal 1, @randomnumber.get_digit.length
   end
 end
