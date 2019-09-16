@@ -1,11 +1,11 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require './lib/randomnumber'
+require './lib/random_number'
 
 class RandomNumberTest < Minitest::Test
 
   def setup
-    @randomnumber = RandomNumber(5)
+    @randomnumber = RandomNumber.new(5)
   end
 
   def test_it_exists
