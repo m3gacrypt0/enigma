@@ -44,4 +44,10 @@ class EnigmaTest < Minitest::Test
     assert @enigma.character_set?(" ", character_set)
   end
 
+  def test_method_get_index
+    character_set = ("a".."z").to_a << " "
+    assert_equal 7, @enigma.get_index("h", character_set)
+    assert_nil @enigma.get_index("!", character_set)
+  end
+
 end
