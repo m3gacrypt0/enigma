@@ -25,13 +25,13 @@ module Encryptable
     end
   end
 
-  def character_set?(character, character_set)
-    return true if character_set.include?(character)
+  def character_set?(char, char_set)
+    return true if char_set.include?(char)
     false
   end
 
-  def get_index(character, character_set)
-    character_set.index(character)
+  def get_index(char, char_set)
+    char_set.index(char)
   end
-  
+
 end

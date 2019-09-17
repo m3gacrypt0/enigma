@@ -4,11 +4,12 @@ require './lib/enigma'
 class EnigmaTest < Minitest::Test
 
   def setup
-    @enigma = Enigma.new("hello world", '02715', '040895')
-    @enigma2 = Enigma.new("Hello world")
-    @enigma3 = Enigma.new("Hello world", '04567')
-    # @enigma4 = Enigma.new("Hello world", nil, '160919')
-    @today = Date.today.strftime('%d%m%y')
+    @enigma     = Enigma.new
+    @enigma2    = Enigma.new
+    @enigma3    = Enigma.new
+    @today      = Date.today.strftime('%d%m%y')
+    @char_set   = ("a".."z").to_a << " "
+    @shift_set  = [:a, :b, :c, :d]
   end
 
   def test_it_exists
@@ -16,22 +17,38 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_equal "hello world", @enigma.message
-    assert_equal '02715', @enigma.key
-    assert_equal '040895', @enigma.date
-    assert_equal @today, @enigma2.date
-    assert_equal @today, @enigma3.date
-    refute_empty @enigma2.key
-    # assert_nil @enigma4.key
+    assert_equal @char_set, @enigma.instance_variable_get(:@char_set)
+    assert_equal @shift_set, @enigma.instance_variable_get(:@shift_set)
+
   end
 
   def test_method_encrypt
     expected = {:encryption =>  'keder ohulw',
                 :key => '02715',
                 :date => '040895'}
-    assert_equal 'keder ohulw', @enigma.encrypt[:encryption]
-    assert_equal '02715', @enigma.encrypt[:key]
-    assert_equal '040895', @enigma.encrypt[:date]
+    expected2 = {:encryption =>  'keder ohulw!',
+                 :key => '02715',
+                 :date => '040895'}
+    assert_equal expected, @enigma.encrypt("hello world", '02715', '040895')
+    assert_equal expected2, @enigma.encrypt("HELLO wORld!", '02715', '040895')
+  end
+
+  def test_method_get_shifted_character
+    shifts =  {:a => 3,
+               :b => 27,
+               :c => 73,
+               :d => 20}
+    assert_equal "k", @enigma.get_shifted_character("h", shifts)
+    assert_equal "c", @enigma.get_shifted_character(" ", shifts)
+  end
+
+  def test_method_get_rotate
+    shifts =  {:a => 3,
+               :b => 27,
+               :c => 73,
+               :d => 20}
+    assert_equal 10, @enigma.get_rotate("h", shifts)
+    assert_equal 29, @enigma.get_rotate(" ", shifts)
   end
 
 end
