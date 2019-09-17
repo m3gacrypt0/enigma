@@ -29,4 +29,12 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.get_offsets('040895')
   end
 
+  def test_method_get_shifts
+    expected =  {:a_shift => 3,
+                 :b_shift => 27,
+                 :c_shift => 73,
+                 :d_shift => 20}
+    assert_equal expected, @enigma.get_shifts('02715', '040895')
+  end
+
 end
