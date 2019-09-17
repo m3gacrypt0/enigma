@@ -37,4 +37,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.get_shifts('02715', '040895')
   end
 
+  def test_method_character_set?
+    character_set = ("a".."z").to_a << " "
+    assert @enigma.character_set?("h", character_set)
+    refute @enigma.character_set?("1", character_set)
+    assert @enigma.character_set?(" ", character_set)
+  end
+
+  def test_method_get_index
+    character_set = ("a".."z").to_a << " "
+    assert_equal 7, @enigma.get_index("h", character_set)
+    assert_nil @enigma.get_index("!", character_set)
+  end
+
+
+
 end

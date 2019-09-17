@@ -24,4 +24,14 @@ module Encryptable
       key_value + offset_value
     end
   end
+
+  def character_set?(char, char_set)
+    return true if char_set.include?(char)
+    false
+  end
+
+  def get_index(char, char_set)
+    char_set.index(char)
+  end
+
 end
