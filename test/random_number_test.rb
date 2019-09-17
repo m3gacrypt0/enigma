@@ -12,13 +12,9 @@ class RandomNumberTest < Minitest::Test
     assert_instance_of RandomNumber, @randomnumber
   end
 
-  def test_it_has_attributes
-    assert_equal 5, @randomnumber.length
-  end
-
   def test_method_generate
-    assert_equal 5, @randomnumber.generate.length
-    assert_equal 10, @randomnumber2.generate.length
+    assert_equal 5, RandomNumber.generate(5).length
+    assert_equal 10, RandomNumber.generate(10).length
   end
 
   def test_method_get_digit
