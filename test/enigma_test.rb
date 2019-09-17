@@ -7,7 +7,7 @@ class EnigmaTest < Minitest::Test
     @enigma = Enigma.new("Hello world", '04567', '160919')
     @enigma2 = Enigma.new("Hello world")
     @enigma3 = Enigma.new("Hello world", '04567')
-    @enigma4 = Enigma.new("Hello world",, '160919')
+    # @enigma4 = Enigma.new("Hello world", nil, '160919')
     @today = Date.today.strftime('%d%m%y')
   end
 
@@ -22,7 +22,7 @@ class EnigmaTest < Minitest::Test
     assert_equal @today, @enigma2.date
     assert_equal @today, @enigma3.date
     refute_empty @enigma2.key
-    refute_empty @enigma4.key
+    # assert_nil @enigma4.key
   end
 
 end
