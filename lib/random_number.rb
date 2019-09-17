@@ -1,14 +1,13 @@
 class RandomNumber
-  attr_reader :length
 
   def initialize(length)
-    @length = length
     @source_digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
 
-  def generate
+  def self.generate(length)
+    random_number = RandomNumber.new(length)
     output = ""
-    @length.times { output += get_digit}
+    length.times { output += random_number.get_digit}
     output
   end
 
