@@ -1,0 +1,3 @@
+module Encryptable
+
+end
