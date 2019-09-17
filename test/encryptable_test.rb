@@ -50,4 +50,11 @@ class EnigmaTest < Minitest::Test
     assert_nil @enigma.get_index("!", character_set)
   end
 
+  def test_method_get_shifted_character
+    character_set = ("a".."z").to_a << " "
+    assert_equal "k", @enigma.get_shifted_character("h", character_set)
+    assert_equal " ", @enigma.get_shifted_character(" ", character_set)
+    assert_equal "!", @enigma.get_shifted_character("!", character_set)
+  end
+
 end
