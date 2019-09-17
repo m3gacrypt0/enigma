@@ -30,6 +30,8 @@ class Enigma
     {:encryption =>  encrypted_message, :key => key, :date => date}
   end
 
+
+
   def get_shifted_character(char, shifts)
     @char_set.rotate(get_rotate(char, shifts))[0]
   end
