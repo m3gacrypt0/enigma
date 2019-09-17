@@ -1,5 +1,5 @@
 require './test/test_helper'
-# require './lib/enigma'
+require './lib/enigma'
 require './lib/encryptable'
 
 class EnigmaTest < Minitest::Test
@@ -18,7 +18,7 @@ class EnigmaTest < Minitest::Test
                  :b_key => '27',
                  :c_key => '71',
                  :d_key => '15'}
-    assert_equal expected, get_keys('02715')
+    assert_equal expected, @enigma.get_keys('02715')
   end
 
 end
