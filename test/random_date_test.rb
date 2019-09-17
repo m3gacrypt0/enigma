@@ -6,6 +6,7 @@ class RandomDateTest < Minitest::Test
   def setup
     @random_date = RandomDate.new(false)
     @random_date2 = RandomDate.new(true)
+    @today = Date.today.strftime('%d%m%y')
   end
 
   def test_it_exists
@@ -13,8 +14,8 @@ class RandomDateTest < Minitest::Test
   end
 
   def test_method_generate
-    assert_equal 6, RandomDate.new(false).length
-    assert_equal 6, RandomDate.new(true).length
+    assert_equal @today, RandomDate.generate(false)
+    assert_equal 6, RandomDate.generate(true).length
   end
 
 end
