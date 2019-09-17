@@ -11,11 +11,7 @@ class Enigma
     @message  = message
     @key      = key
     @date     = date
-    @offsets  = { :a => get_char_offset('A', @key),
-                  :b => get_char_offset('B', @key),
-                  :c => get_char_offset('C', @key),
-                  :d => get_char_offset('D', @key)
-                }
+
   end
 
   def self.encrypt(message, key, date)
