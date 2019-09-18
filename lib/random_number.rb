@@ -7,7 +7,7 @@ class RandomNumber
   def self.generate(length)
     random_number = RandomNumber.new(length)
     output = ""
-    length.times { output += random_number.get_digit}
+    length.times { output += random_number.get_digit }
     output
   end
 
