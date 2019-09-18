@@ -48,7 +48,7 @@ class Enigma
     end
 
     @shift_set = [:a, :b, :c, :d]
-    {:encryption =>  decrypted_message, :key => key, :date => date}
+    {:decryption =>  decrypted_message, :key => key, :date => date}
 
   end
 
