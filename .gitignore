@@ -1,2 +1,7 @@
 # Don't track content of these folders
 coverage/
+
+# Don't track content of these files
+decrypted.txt
+encrypted.txt
+message.txt
