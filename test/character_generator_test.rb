@@ -18,7 +18,6 @@ class CharacterGeneratorTest < Minitest::Test
     assert_equal @shift_set, @char_gen.instance_variable_get(:@shift_set)
   end
 
-
   def test_method_get_shifted_character
     shifts =  {:a => 3,
                :b => 27,

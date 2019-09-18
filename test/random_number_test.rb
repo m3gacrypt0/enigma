@@ -22,4 +22,5 @@ class RandomNumberTest < Minitest::Test
     assert_includes expected, @random_number.get_digit
     assert_equal 1, @random_number.get_digit.length
   end
+
 end
