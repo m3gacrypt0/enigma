@@ -4,8 +4,7 @@ require './lib/random_number'
 class RandomNumberTest < Minitest::Test
 
   def setup
-    @random_number = RandomNumber.new(5)
-    @random_number2 = RandomNumber.new(10)
+    @random_number = RandomNumber.new
   end
 
   def test_it_exists
