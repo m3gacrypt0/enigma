@@ -6,8 +6,7 @@ class EnigmaTest < Minitest::Test
   def setup
     @enigma     = Enigma.new
     @today      = Date.today.strftime('%d%m%y')
-    @char_set   = ("a".."z").to_a << " "
-    @shift_set  = [:a, :b, :c, :d]
+    @char_gen   = CharacterGenerator.new
   end
 
   def test_it_exists
@@ -15,9 +14,7 @@ class EnigmaTest < Minitest::Test
   end
 
   def test_it_has_attributes
-    assert_equal @char_set, @enigma.instance_variable_get(:@char_set)
-    assert_equal @shift_set, @enigma.instance_variable_get(:@shift_set)
-
+    assert_instance_of CharacterGenerator, @enigma.instance_variable_get(:@char_gen)
   end
 
   def test_method_encrypt
@@ -44,24 +41,6 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.decrypt("keder ohulw", '02715', '040895')
     assert_equal expected2, @enigma.decrypt("keder ohulw!", '02715', '040895')
     assert_equal @today, @enigma.decrypt("keder ohulw!", '02715')[:date]
-  end
-
-  def test_method_get_shifted_character
-    shifts =  {:a => 3,
-               :b => 27,
-               :c => 73,
-               :d => 20}
-    assert_equal "k", @enigma.get_shifted_character("h", shifts)
-    assert_equal "c", @enigma.get_shifted_character(" ", shifts)
-  end
-
-  def test_method_get_rotate
-    shifts =  {:a => 3,
-               :b => 27,
-               :c => 73,
-               :d => 20}
-    assert_equal 10, @enigma.get_rotate("h", shifts)
-    assert_equal 29, @enigma.get_rotate(" ", shifts)
   end
 
 end
