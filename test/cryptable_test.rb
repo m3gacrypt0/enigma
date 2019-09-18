@@ -1,14 +1,11 @@
 require './test/test_helper'
-require './lib/enigma'
+require './lib/cryptable'
 
-class EnigmaTest < Minitest::Test
+class CryptableTest < Minitest::Test
+  include Cryptable
 
   def setup
-    @enigma = Enigma.new("hello world", '02715', '040895')
-    @enigma2 = Enigma.new("Hello world")
-    @enigma3 = Enigma.new("Hello world", '04567')
-    @today = Date.today.strftime('%d%m%y')
-
+    @char_set = ("a".."z").to_a << " "
   end
 
   def test_method_get_keys
@@ -16,7 +13,7 @@ class EnigmaTest < Minitest::Test
                  :b => 27,
                  :c => 71,
                  :d => 15}
-    assert_equal expected, @enigma.get_keys('02715')
+    assert_equal expected, get_keys('02715')
   end
 
   def test_method_get_offsets
@@ -24,7 +21,7 @@ class EnigmaTest < Minitest::Test
                  :b => 0,
                  :c => 2,
                  :d => 5}
-    assert_equal expected, @enigma.get_offsets('040895')
+    assert_equal expected, get_offsets('040895')
   end
 
   def test_method_get_shifts
@@ -32,20 +29,18 @@ class EnigmaTest < Minitest::Test
                  :b => 27,
                  :c => 73,
                  :d => 20}
-    assert_equal expected, @enigma.get_shifts('02715', '040895')
+    assert_equal expected, get_shifts('02715', '040895')
   end
 
   def test_method_character_set?
-    character_set = ("a".."z").to_a << " "
-    assert @enigma.character_set?("h", character_set)
-    refute @enigma.character_set?("1", character_set)
-    assert @enigma.character_set?(" ", character_set)
+    assert character_set?("h", @char_set)
+    refute character_set?("1", @char_set)
+    assert character_set?(" ", @char_set)
   end
 
   def test_method_get_index
-    character_set = ("a".."z").to_a << " "
-    assert_equal 7, @enigma.get_index("h", character_set)
-    assert_nil @enigma.get_index("!", character_set)
+    assert_equal 7, get_index("h", @char_set)
+    assert_nil get_index("!", @char_set)
   end
 
 end
