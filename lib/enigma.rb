@@ -30,7 +30,27 @@ class Enigma
     {:encryption =>  encrypted_message, :key => key, :date => date}
   end
 
+  def decrypt(  message,
+                key,
+                date = Date.today.strftime('%d%m%y'))
 
+    shifts = get_shifts(key, date).transform_values! {|v| -v}
+    decrypted_message  = ""
+
+    to_decrypt = message.split(//)
+    to_decrypt.each do |char|
+      if character_set?(char, @char_set)
+        decrypted_message += get_shifted_character(char, shifts)
+      else
+        decrypted_message += char
+      end
+      @shift_set.rotate!
+    end
+
+    @shift_set = [:a, :b, :c, :d]
+    {:encryption =>  decrypted_message, :key => key, :date => date}
+
+  end
 
   def get_shifted_character(char, shifts)
     @char_set.rotate(get_rotate(char, shifts))[0]

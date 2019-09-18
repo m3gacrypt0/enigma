@@ -38,7 +38,7 @@ class EnigmaTest < Minitest::Test
     expected = {:encryption =>  'hello world',
                 :key => '02715',
                 :date => '040895'}
-    expected2 = {:encryption =>  'HELLO wORld!',
+    expected2 = {:encryption =>  'hello world!',
                  :key => '02715',
                  :date => '040895'}
     assert_equal expected, @enigma.decrypt("keder ohulw", '02715', '040895')
