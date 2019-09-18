@@ -1,12 +1,8 @@
 require './lib/enigma'
+require './lib/output_file'
 
 handle = File.open(ARGV[0], "r")
-enigma = Enigma.new
-encryption_data = enigma.encrypt(handle.read)
+
+OutputFile.generate(ARGV[1], handle.read, 'e')
+
 handle.close
-
-writer = File.open(ARGV[1], "w")
-writer.write(encryption_data[:encryption])
-
-
-puts "Created '#{ARGV[1]}' with the key #{encryption_data[:key]} and date #{encryption_data[:date]}"
