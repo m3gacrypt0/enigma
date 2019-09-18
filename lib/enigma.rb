@@ -1,5 +1,6 @@
 require './lib/random_number'
 require './lib/cryptable'
+require 'date'
 
 class Enigma
   include Cryptable
