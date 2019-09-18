@@ -5,8 +5,6 @@ class EnigmaTest < Minitest::Test
 
   def setup
     @enigma     = Enigma.new
-    @enigma2    = Enigma.new
-    @enigma3    = Enigma.new
     @today      = Date.today.strftime('%d%m%y')
     @char_set   = ("a".."z").to_a << " "
     @shift_set  = [:a, :b, :c, :d]
@@ -31,6 +29,21 @@ class EnigmaTest < Minitest::Test
                  :date => '040895'}
     assert_equal expected, @enigma.encrypt("hello world", '02715', '040895')
     assert_equal expected2, @enigma.encrypt("HELLO wORld!", '02715', '040895')
+    assert_equal @today, @enigma.encrypt("hello world", "02715")[:date]
+    assert_equal @today, @enigma.encrypt("hello world")[:date]
+    assert_equal 5, @enigma.encrypt("hello world")[:key].length
+  end
+
+  def test_method_decrypt
+    expected = {:encryption =>  'hello world',
+                :key => '02715',
+                :date => '040895'}
+    expected2 = {:encryption =>  'hello world!',
+                 :key => '02715',
+                 :date => '040895'}
+    assert_equal expected, @enigma.decrypt("keder ohulw", '02715', '040895')
+    assert_equal expected2, @enigma.decrypt("keder ohulw!", '02715', '040895')
+    assert_equal @today, @enigma.decrypt("keder ohulw!", '02715')[:date]
   end
 
   def test_method_get_shifted_character
