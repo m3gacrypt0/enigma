@@ -1,9 +1,9 @@
 require './lib/random_number'
 require './lib/random_date'
-require './lib/encryptable'
+require './lib/cryptable'
 
 class Enigma
-  include Encryptable
+  include Cryptable
 
   def initialize
     @char_set           = ("a".."z").to_a << " "

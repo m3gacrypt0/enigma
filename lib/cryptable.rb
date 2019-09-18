@@ -1,4 +1,4 @@
-module Encryptable
+module Cryptable
 
   def get_keys(key)
     output_hash = Hash.new
