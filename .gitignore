@@ -2,6 +2,7 @@
 coverage/
 
 # Don't track content of these files
+test_path.txt
 decrypted.txt
 encrypted.txt
 message.txt
