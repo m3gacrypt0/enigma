@@ -6,5 +6,7 @@ Based on the provided evaluation rubric, I assess my project at a **3.75** avera
 
 | Score | Evaluation Metric | Specific Notes |
 | ----------- | ----------- | ----------- |
-| Header | Title |
-| Paragraph | Text |
+| Header | Title | Title |
+| Paragraph | Text | Text |
+| Header | Title | Title |
+| Paragraph | Text | Text |
