@@ -1,6 +1,5 @@
 require './test/test_helper'
 require './lib/enigma'
-require './lib/cryptable'
 
 class EnigmaTest < Minitest::Test
 
@@ -8,7 +7,6 @@ class EnigmaTest < Minitest::Test
     @enigma = Enigma.new("hello world", '02715', '040895')
     @enigma2 = Enigma.new("Hello world")
     @enigma3 = Enigma.new("Hello world", '04567')
-    # @enigma4 = Enigma.new("Hello world", nil, '160919')
     @today = Date.today.strftime('%d%m%y')
 
   end
@@ -49,7 +47,5 @@ class EnigmaTest < Minitest::Test
     assert_equal 7, @enigma.get_index("h", character_set)
     assert_nil @enigma.get_index("!", character_set)
   end
-
-
 
 end

@@ -13,21 +13,13 @@ class Enigma
   def encrypt(  message,
                 key = RandomNumber.generate(5),
                 date = Date.today.strftime('%d%m%y'))
+
     shifts = get_shifts(key, date)
-    encrypted_message  = ""
-
     to_encrypt = message.downcase.split(//)
-    to_encrypt.each do |char|
-      if character_set?(char, @char_set)
-        encrypted_message += get_shifted_character(char, shifts)
-      else
-        encrypted_message += char
-      end
-      @shift_set.rotate!
-    end
 
-    @shift_set = [:a, :b, :c, :d]
-    {:encryption =>  encrypted_message, :key => key, :date => date}
+    {  :encryption =>  get_shifted_message(to_encrypt, shifts),
+       :key => key,
+       :date => date}
   end
 
   def decrypt(  message,
@@ -35,21 +27,11 @@ class Enigma
                 date = Date.today.strftime('%d%m%y'))
 
     shifts = get_shifts(key, date).transform_values! {|v| -v}
-    decrypted_message  = ""
-
     to_decrypt = message.split(//)
-    to_decrypt.each do |char|
-      if character_set?(char, @char_set)
-        decrypted_message += get_shifted_character(char, shifts)
-      else
-        decrypted_message += char
-      end
-      @shift_set.rotate!
-    end
 
-    @shift_set = [:a, :b, :c, :d]
-    {:decryption =>  decrypted_message, :key => key, :date => date}
-
+    { :decryption =>  get_shifted_message(to_decrypt, shifts),
+      :key => key,
+      :date => date}
   end
 
   def get_shifted_character(char, shifts)
@@ -58,6 +40,19 @@ class Enigma
 
   def get_rotate(char, shifts)
     get_index(char, @char_set) + shifts[@shift_set[0]]
+  end
+
+  def get_shifted_message(orig_message, shifts)
+    new_message  = ""
+
+    orig_message.each do |char|
+      return new_message += char if !character_set?(char, @char_set)
+      new_message += get_shifted_character(char, shifts)
+      @shift_set.rotate!
+    end
+
+    @shift_set = [:a, :b, :c, :d]
+    new_message
   end
 
 end
